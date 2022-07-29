@@ -17,14 +17,14 @@ Parameters:
   GitSourceRepo:
     Type: String
     Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
-    Default: Server-Deployment-and-Containerization
+    Default: FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub repository name
 
   GitBranch:
     Type: String
-    Default: master
+    Default: develop
     Description: GitHub git repository branch - change triggers a new build
     MinLength: 1
     MaxLength: 100
@@ -40,7 +40,7 @@ Parameters:
 
   GitHubUser:
     Type: String
-    Default: Matthsworld
+    Default: OvieMudi
     Description: GitHub username or organization
     MinLength: 3
     MaxLength: 100
@@ -48,7 +48,7 @@ Parameters:
 
   CodeBuildDockerImage:
     Type: String
-    Default: aws/codebuild/standard:4.0
+    Default: aws/codebuild/docker:17.09.0
     Description: Default AWS CodeBuild Docker optimized image
     MinLength: 3
     MaxLength: 100
@@ -161,11 +161,7 @@ Resources:
 
       Handler: index.handler
       Role: !GetAtt CustomResourceLambdaExecutionRole.Arn
-<<<<<<< HEAD
       Runtime: python2.7
-=======
-      Runtime: python3.9
->>>>>>> bbb929e2c7d9c224ae8d2941b9c9ce91c1bbf778
       Timeout: 300
 
   CustomResourceLambdaExecutionRole:
